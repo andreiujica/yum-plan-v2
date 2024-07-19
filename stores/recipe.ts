@@ -1,6 +1,6 @@
 import type { Recipe } from "~/types/recipe";
 import { defineStore } from "pinia";
-import { builtInRecipes } from "~/data/recipe";
+import { builtInRecipes } from "~/server/data/recipe";
 
 export const useRecipeStore = defineStore("recipe", {
   state: () => ({

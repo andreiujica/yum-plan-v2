@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ingredients } from "~/data/ingredient";
+import { ingredients } from "~/server/data/ingredient";
 
 export const useIngredientStore = defineStore("ingredient", {
   state: () => ({
