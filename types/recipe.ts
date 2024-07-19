@@ -6,7 +6,7 @@ export type IconColor =
   | "blue"
   | "violet";
 
-interface RecipeIngredient {
+export interface RecipeIngredient {
   ingredientId: number;
   quantity: number;
   usedUnit: string;
