@@ -9,6 +9,7 @@ export default defineNuxtConfig({
   ],
   ui: {
     icons: ["tabler"],
+    safelistColors: ["red", "orange", "yellow", "green", "blue", "violet"],
   },
   css: ["~/assets/css/main.css"],
 });

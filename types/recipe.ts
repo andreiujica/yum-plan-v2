@@ -1,4 +1,10 @@
-export type IconColor = "red" | "orange" | "yellow" | "green" | "blue";
+export type IconColor =
+  | "red"
+  | "orange"
+  | "yellow"
+  | "green"
+  | "blue"
+  | "violet";
 
 interface RecipeIngredient {
   ingredientId: number;
