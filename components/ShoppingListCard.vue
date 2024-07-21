@@ -85,7 +85,6 @@
 </template>
 
 <script setup lang="ts">
-import type { Base } from "#build/components";
 import type { Recipe } from "~/types/recipe";
 
 const shoppingListStore = useShoppingListStore();
