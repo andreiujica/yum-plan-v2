@@ -73,7 +73,7 @@ const handleKeydown = (event: KeyboardEvent) => {
 
 const validateFormula = (formula: string): boolean => {
   // Regex to validate the format "100g * flour + 200ml * milk"
-  const regex = /^\d+\w+\s\*\s\w+(?:\s\+\s\d+\w+\s\*\s\w+)*$/;
+  const regex = /^\d+\w+\s\*\s(?:\w+\s?)+(?:\s\+\s\d+\w+\s\*\s(?:\w+\s?)+)*$/;
   return regex.test(formula.trim());
 };
 </script>

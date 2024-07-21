@@ -168,7 +168,7 @@ const parseFormula = (formula: string): RecipeIngredient[] => {
   const parts = formula.split("+").map((part) => part.trim());
 
   parts.forEach((part) => {
-    const match = part.match(/^(\d+)(\w+)\s\*\s(\w+)$/);
+    const match = part.match(/^(\d+)(\w+)\s\*\s(.+)$/);
     if (match) {
       const [, quantity, usedUnit, ingredientName] = match;
 
@@ -176,6 +176,7 @@ const parseFormula = (formula: string): RecipeIngredient[] => {
         useIngredientStore().getIngredientIdByName(ingredientName);
 
       if (!ingredientId) {
+        console.error("Ingredient not found", ingredientName, ingredientId);
         formulaError.value = true;
         return;
       }
