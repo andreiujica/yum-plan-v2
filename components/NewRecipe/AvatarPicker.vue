@@ -2,6 +2,8 @@
   <div class="flex flex-row items-center justify-between">
     <RecipeAvatar :recipe="recipe" class="mr-16" />
 
+    <!-- This is the color picker. It dynamically generates color options (see :class)
+         and emits the selected color to the parent component. -->
     <div
       v-for="color in colors"
       :key="color"

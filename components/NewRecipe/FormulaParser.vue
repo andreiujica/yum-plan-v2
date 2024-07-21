@@ -9,7 +9,7 @@
     :ui="{
       trailing: {
         padding: {
-          md: 'pe-48',
+          md: 'pe-48', // 48px padding end for the trailing slot (autocomplete)
         },
       },
     }"
@@ -35,6 +35,12 @@ const emit = defineEmits(["update:modelValue", "error", "valid"]);
 const ingredients = useIngredientStore().getAutocompleteIngredients;
 
 const handleInput = (event: InputEvent) => {
+  /* This method is called whenever the user types in the input field.
+
+   * It finds the last word in the input field and checks if it matches
+   * any of the ingredients. If it does, it sets the suggestion ref to
+   * the matched ingredient.
+   */
   emit("update:modelValue", (event.target as HTMLInputElement).value);
 
   const input = event.target as HTMLInputElement;
@@ -61,6 +67,11 @@ const handleInput = (event: InputEvent) => {
 };
 
 const handleKeydown = (event: KeyboardEvent) => {
+  /* This method is called whenever the user presses a key in the input field.
+
+   * If the user presses the Tab key and there is a suggestion, the suggestion
+   * is added to the input field.
+   */
   if (event.key === "Tab" && suggestion.value) {
     event.preventDefault();
     const words = inputValue.value.split(" ");
@@ -72,7 +83,14 @@ const handleKeydown = (event: KeyboardEvent) => {
 };
 
 const validateFormula = (formula: string): boolean => {
-  // Regex to validate the format "100g * flour + 200ml * milk"
+  /* This really complex regex pattern matches the following:
+   * '100g * flour'
+   * (\d+) - captures the quantity (100)
+   * (\w+) - captures the unit (g)
+   * \s\*\s - matches the '*' character with spaces around it
+   * (.+) - captures the ingredient name (flour or dragon scales)
+   * (?:) - non-capturing group which means a bunch of these can be chained
+   */
   const regex = /^\d+\w+\s\*\s(?:\w+\s?)+(?:\s\+\s\d+\w+\s\*\s(?:\w+\s?)+)*$/;
   return regex.test(formula.trim());
 };

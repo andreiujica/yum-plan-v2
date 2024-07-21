@@ -6,6 +6,9 @@ export const useShoppingListStore = defineStore("shoppingList", {
   }),
   getters: {
     getShoppingList(): [Recipe, number][] {
+      /* This getter turns the shoppingMap into an array of [Recipe, number] tuples
+       * where the number is the count of the recipe in the shopping list.
+       */
       const recipeStore = useRecipeStore();
       const shoppingList: [Recipe, number][] = [];
 
@@ -19,6 +22,8 @@ export const useShoppingListStore = defineStore("shoppingList", {
       return shoppingList;
     },
     getIngredientTotals(): RecipeIngredient[] {
+      // This getter calculates the total quantity of each ingredient in the shopping list.
+
       const ingredientTotals = new Map<number, RecipeIngredient>();
       const recipeStore = useRecipeStore();
 
@@ -26,6 +31,7 @@ export const useShoppingListStore = defineStore("shoppingList", {
         const recipe = recipeStore.getRecipeById(recipeId);
         if (recipe) {
           recipe.ingredients.forEach((ingredient) => {
+            // If the ingredient is already in the map, increment the quantity
             const currentTotal = ingredientTotals.get(ingredient.ingredientId);
             if (currentTotal) {
               ingredientTotals.set(ingredient.ingredientId, {
@@ -33,6 +39,7 @@ export const useShoppingListStore = defineStore("shoppingList", {
                 quantity: currentTotal.quantity + ingredient.quantity * count,
               });
             } else {
+              // If the ingredient is not in the map, add it with the correct quantity
               ingredientTotals.set(ingredient.ingredientId, {
                 ingredientId: ingredient.ingredientId,
                 quantity: ingredient.quantity * count,

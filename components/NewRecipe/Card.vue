@@ -1,3 +1,9 @@
+<!-- This is the biggest component of the NewRecipe feature. It's a wizard-like
+     form that guides the user through the process of creating a new recipe.
+     
+     It's composed of four steps, each with its own set of instructions and
+     input fields. -->
+
 <template>
   <UCard
     :ui="{
@@ -10,6 +16,8 @@
     <template #header>
       <div class="flex flex-col space-y-2">
         <span class="text-lg font-semibold">Build Your Own Recipe</span>
+
+        <!-- Progress bar that shows the current step of the wizard -->
         <UProgress
           :value="wizardStep"
           :max="[
@@ -21,6 +29,8 @@
         />
       </div>
     </template>
+
+    <!----------- Step 0: Name your recipe ----------->
 
     <div class="flex flex-col space-y-4" v-if="wizardStep === 0">
       <span class="font-light text-sm text-gray-800 dark:text-gray-200">
@@ -44,6 +54,8 @@
       />
     </div>
 
+    <!----------- Step 1: Choose an icon color ----------->
+
     <div class="flex flex-col space-y-4" v-else-if="wizardStep === 1">
       <span class="font-light text-sm text-gray-800 dark:text-gray-200">
         Choose a color that best represents your recipe. This color will be used
@@ -52,6 +64,8 @@
 
       <NewRecipeAvatarPicker :recipe="recipe" @colorSelected="setIconColor" />
     </div>
+
+    <!----------- Step 2: Add ingredients using a formula ----------->
 
     <div class="flex flex-col space-y-4" v-else-if="wizardStep === 2">
       <span class="font-light text-sm text-gray-800 dark:text-gray-200">
@@ -75,6 +89,8 @@
       />
     </div>
 
+    <!----------- Step 3: Review your recipe ----------->
+
     <div class="flex flex-col space-y-4" v-else>
       <span class="font-light text-sm text-gray-800 dark:text-gray-200">
         Great Job! Your recipe is ready to be saved. If everything looks good,
@@ -85,6 +101,8 @@
     </div>
 
     <template #footer>
+      <!-- Navigation buttons to move between steps. The "Next" button is
+           disabled if the current step is not valid. -->
       <div class="flex justify-end gap-4">
         <UButton
           v-if="wizardStep > 0"
@@ -164,10 +182,22 @@ const setIconColor = (color: string) => {
 };
 
 const parseFormula = (formula: string): RecipeIngredient[] => {
+  /* The formula should look like this:
+   * '100g * flour + 200ml * milk'
+   * This function parses the formula and returns an array
+   * of RecipeIngredient objects.
+   */
   const ingredients: RecipeIngredient[] = [];
   const parts = formula.split("+").map((part) => part.trim());
 
   parts.forEach((part) => {
+    /* This really complex regex pattern matches the following:
+     * '100g * flour'
+     * (\d+) - captures the quantity (100)
+     * (\w+) - captures the unit (g)
+     * \s\*\s - matches the '*' character with spaces around it
+     * (.+) - captures the ingredient name (flour or dragon scales)
+     */
     const match = part.match(/^(\d+)(\w+)\s\*\s(.+)$/);
     if (match) {
       const [, quantity, usedUnit, ingredientName] = match;
@@ -211,6 +241,8 @@ const isStepValid = computed(() => {
 const handleAddRecipe = () => {
   useRecipeStore().addRecipe(recipe.value);
   toast.add({ title: "Recipe added successfully!" });
+
+  // We need to reset the form after adding the recipe
   wizardStep.value = 0;
   recipe.value = {
     id: 1,

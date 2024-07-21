@@ -2,8 +2,7 @@ import { mountSuspended } from "@nuxt/test-utils/runtime";
 import { describe, it, expect } from "vitest";
 import { nextTick } from "vue";
 import NewRecipeAvatarPicker from "~/components/NewRecipe/AvatarPicker.vue";
-import RecipeAvatar from "~/components/RecipeAvatar.vue";
-import type { Recipe, IconColor } from "~/types/recipe";
+import type { IconColor } from "~/types/recipe";
 
 describe("NewRecipeAvatarPicker", () => {
   const recipe = {

@@ -33,6 +33,7 @@ describe("NewRecipeNewRecipeFormulaParser", () => {
     await input.setValue("100g * flo");
     await nextTick();
 
+    // The suggestion section should have "flour" in it
     expect(component.html()).toContain("flour");
   });
 
@@ -43,6 +44,7 @@ describe("NewRecipeNewRecipeFormulaParser", () => {
     await input.setValue("100g flour");
     await nextTick();
 
+    // Regex should catch the invalid formula
     expect(component.emitted("error")).toHaveLength(1);
     expect(component.emitted("error")?.[0]).toEqual(["Invalid formula"]);
   });

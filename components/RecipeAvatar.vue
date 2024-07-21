@@ -37,6 +37,7 @@ const avatarClass = computed(() => {
 });
 
 const sizeClass = computed(() => {
+  // If the size is small, use the small avatar size, else use the large avatar size.
   return props.size === "small"
     ? "w-6 h-6 md:w-8 md:h-8 lg:w-16 lg:h-16"
     : "w-8 h-8 md:w-14 md:h-14 lg:w-24 lg:h-24";

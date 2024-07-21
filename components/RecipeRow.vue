@@ -7,6 +7,7 @@
     }"
   >
     <div class="flex flex-row items-center justify-between">
+      <!-- Recipe Avatar and Name -->
       <div class="flex flex-row items-center gap-6">
         <RecipeAvatar :recipe="recipe" size="small" />
 
@@ -24,6 +25,8 @@
           </UBadge>
         </div>
       </div>
+
+      <!-- Ingredients Display and Popover -->
 
       <div class="flex flex-row items-end gap-12">
         <UPopover :popper="{ placement: 'bottom-end' }">
@@ -54,6 +57,8 @@
             </div>
           </template>
         </UPopover>
+
+        <!-- Action Buttons -->
 
         <div class="flex flex-row items-center gap-2">
           <UButton

@@ -7,6 +7,8 @@
       },
     }"
   >
+    <!-- Shopping Cart Summary (With an empty state for when we have no items)-->
+
     <template #header>
       <div class="flex flex-col space-y-2">
         <span class="text-lg font-semibold">Shopping Cart Summary</span>
@@ -41,6 +43,8 @@
           </div>
         </template>
       </div>
+
+      <!-- Ingredients List (Also with an empty state)-->
 
       <UCard :ui="{ base: 'w-full h-64 overflow-auto' }">
         <template #header>

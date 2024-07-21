@@ -1,3 +1,7 @@
+/* In a real-world application, this data would be stored in a database.
+ * However, for the purpose of this project, we will store the data in a file.
+ */
+
 import type { Ingredient } from "~/types/ingredient";
 
 export const ingredients: Ingredient[] = [
