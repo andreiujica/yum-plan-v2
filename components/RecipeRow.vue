@@ -60,7 +60,7 @@
             icon="i-tabler-shopping-cart-plus"
             size="md"
             color="primary"
-            variant="soft"
+            variant="solid"
             :disabled="displayOnly"
             @click="$emit('shoppingCart', recipe)"
           />

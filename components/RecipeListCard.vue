@@ -21,6 +21,7 @@
         :key="recipe.id"
         :recipe="recipe"
         @delete="deleteRecipe"
+        @shoppingCart="addToShoppingList"
       />
     </div>
   </UCard>
@@ -35,6 +36,13 @@ const deleteRecipe = (recipe: Recipe) => {
   useRecipeStore().deleteRecipe(recipe.id);
   toast.add({
     title: "Recipe successfully deleted.",
+  });
+};
+
+const addToShoppingList = (recipe: Recipe) => {
+  useShoppingListStore().addRecipe(recipe.id);
+  toast.add({
+    title: "Recipe added to shopping list.",
   });
 };
 </script>
