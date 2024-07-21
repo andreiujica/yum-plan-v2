@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   modules: [
     "@nuxt/ui",
     "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
     "@nuxt/test-utils/module",
     "@nuxt/fonts",
   ],

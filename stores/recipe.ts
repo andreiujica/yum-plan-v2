@@ -6,6 +6,7 @@ export const useRecipeStore = defineStore("recipe", {
   state: () => ({
     recipes: builtInRecipes,
   }),
+  persist: true,
   getters: {
     getRecipeById: (state) => (id: number) => {
       return state.recipes.find((recipe) => recipe.id === id);
