@@ -12,4 +12,9 @@ export default defineNuxtConfig({
     safelistColors: ["red", "orange", "yellow", "green", "blue", "violet"],
   },
   css: ["~/assets/css/main.css"],
+  app: {
+    head: {
+      viewport: "width=device-width, initial-scale=0.9",
+    },
+  },
 });
