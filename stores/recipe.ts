@@ -16,6 +16,10 @@ export const useRecipeStore = defineStore("recipe", {
   },
   actions: {
     addRecipe(recipe: Recipe) {
+      // Find the highest id in the current recipes and add 1 to it
+      const highestId = Math.max(...this.recipes.map((recipe) => recipe.id));
+      recipe.id = highestId + 1;
+
       // Add the new recipe to the beginning of the array to show it first
       this.recipes.unshift(recipe);
     },

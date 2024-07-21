@@ -1,7 +1,10 @@
 <template>
   <UCard
     :ui="{
-      base: 'w-3/5',
+      base: 'w-3/5 h-1/2 overflow-auto flex flex-col',
+      body: {
+        base: 'grow',
+      },
     }"
   >
     <template #header>
@@ -77,6 +80,8 @@
         Great Job! Your recipe is ready to be saved. If everything looks good,
         hit the "Create Recipe" button to save your recipe to the database.
       </span>
+
+      <RecipeRow :recipe="recipe" :displayOnly="true" />
     </div>
 
     <template #footer>
@@ -124,7 +129,7 @@
           variant="solid"
           label="Create Recipe"
           :trailing="true"
-          @click="wizardStep = 0"
+          @click="handleAddRecipe"
         />
       </div>
     </template>
@@ -134,6 +139,7 @@
 <script setup lang="ts">
 import type { Recipe, RecipeIngredient, IconColor } from "~/types/recipe";
 const wizardStep = ref(0);
+const toast = useToast();
 
 /* In order to match the Recipe type, a dummy id is added
  * to the recipe object. This id will be replaced with the
@@ -200,4 +206,16 @@ const isStepValid = computed(() => {
   }
   return true;
 });
+
+const handleAddRecipe = () => {
+  useRecipeStore().addRecipe(recipe.value);
+  toast.add({ title: "Recipe added successfully!" });
+  wizardStep.value = 0;
+  recipe.value = {
+    id: 1,
+    name: "",
+    iconColor: "red" as IconColor,
+    ingredients: [],
+  };
+};
 </script>

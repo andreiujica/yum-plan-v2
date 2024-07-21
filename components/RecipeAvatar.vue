@@ -1,7 +1,10 @@
 <template>
   <div
-    class="rounded-full w-8 h-8 md:w-14 md:h-14 lg:w-24 lg:h-24 flex items-center justify-center"
-    :class="avatarClass"
+    :class="[
+      'rounded-full flex items-center justify-center',
+      sizeClass,
+      avatarClass,
+    ]"
   >
     <span class="text-xl md:text-2xl lg:text-3xl font-semibold">
       {{ getRecipeInitials(props.recipe.name) }}
@@ -14,6 +17,7 @@ import type { Recipe, IconColor } from "~/types/recipe";
 
 const props = defineProps<{
   recipe: Recipe;
+  size?: "large" | "small";
 }>();
 
 const getRecipeInitials = (name: string) => {
@@ -30,5 +34,17 @@ const getRecipeInitials = (name: string) => {
 const avatarClass = computed(() => {
   const color = props.recipe.iconColor;
   return `text-${color}-500 dark:text-${color}-400 bg-${color}-100`;
+});
+
+const sizeClass = computed(() => {
+  return props.size === "small"
+    ? "w-6 h-6 md:w-8 md:h-8 lg:w-16 lg:h-16"
+    : "w-8 h-8 md:w-14 md:h-14 lg:w-24 lg:h-24";
+});
+
+const textClass = computed(() => {
+  return props.size === "small"
+    ? "text-xs md:text-md lg:text-md"
+    : "text-xl md:text-2xl lg:text-3xl";
 });
 </script>
