@@ -14,6 +14,7 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css"],
   app: {
     head: {
+      title: "YumPlan",
       viewport: "width=device-width, initial-scale=0.9",
     },
   },
