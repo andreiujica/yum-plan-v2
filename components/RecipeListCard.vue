@@ -1,7 +1,7 @@
 <template>
   <UCard
     :ui="{
-      base: 'w-2/5 h-1/2 overflow-auto',
+      base: 'w-full h-1/2 overflow-auto',
     }"
   >
     <template #header>
