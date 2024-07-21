@@ -4,7 +4,9 @@ Welcome to YumPlan, an application built with Nuxt.js for managing and planning 
 
 # Product Demo
 
-Watch our product demo to see YumPlan in action!
+Watch our 1-minute product demo to see YumPlan in action!
+
+https://github.com/user-attachments/assets/3703085d-05a9-4134-be72-029943bde43c
 
 Alternatively, just access the deployed version at https://yumplan-theta.vercel.app/ and see for yourself.
 
